@@ -1,0 +1,174 @@
+
+<section style="margin-top:6em;" class="section">
+    <div class="row">
+        <div class="col-lg-12">
+          <%if (form === "Registro de cliente"){%>
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Registro de clientes</h5>
+    
+                <!-- Horizontal Form -->
+                <form method="post" action="/newcustomer">
+                  <div class="row mb-3">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Nombres</label>
+                    <div class="col-sm-10">
+                      <input type="text" name="firstname" class="form-control" id="inputText">
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Apellidos</label>
+                    <div class="col-sm-10">
+                      <input type="text" name="lastname" class="form-control" id="inputEmail">
+                    </div>
+                  </div>
+                  <fieldset class="row mb-3">
+                    <legend class="col-form-label col-sm-2 pt-0">Suscripcion</legend>
+                    <div class="col-sm-10">
+                      <div class="form-check disabled">
+                        <input class="form-check-input" type="radio" name="suscribe" id="gridRadios1" value="si">
+                        <label class="form-check-label" for="gridRadios1">
+                          Si
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="suscribe" id="gridRadios2" value="no" checked>
+                        <label class="form-check-label" for="gridRadios2">
+                          No
+                        </label>
+                      </div>
+                    </div>
+                  </fieldset>
+                  <div class="row mb-3">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Celular</label>
+                    <div class="col-sm-10">
+                      <input type="text" name="phone" class="form-control" id="inputEmail">
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Turno</label>
+                    <div class="col-sm-10">
+                      <select name="turno" id="">
+                        <option>seleccionar..</option>
+                        <%data.forEach(dt=>{%>
+                          <option value="<%=dt.turno%>"><%=dt.turno%></option>
+                        <%})%>
+
+                      </select>
+                    </div>
+                  <div style="margin-top: 1em;" class="text-center">
+                    <button type="reset" class="btn btn-secondary">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Registrar</button>
+                  </div>
+                </form><!-- End Horizontal Form -->
+    
+              </div>
+            </div>
+            <%} else if (form === "Registro de credito") {%>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Registro de credito</h5>
+                        
+                            <h5>Total: <span>C$ </span>  <span id="span-total">0.00</span></h5>
+                      
+                        <form id="form-cred" class="row g-3">
+                            <div class="col-md-12">
+                                    <label for="exampleSelect">Cliente:</label>
+                                    <select class="form-control"  id="customer">
+                                      <%data.forEach(dt=>{%>
+                                       <option value="<%=dt.cliente%>"><%=dt.cliente%></option>
+                                       <%})%>
+                                    </select>
+                 </div>
+                 <div class="col-md-6">
+                   <div class="form-floating">
+                     <input list="products" type="text" class="form-control" id="product" placeholder="">
+                     <label for="floatingEmail">Producto</label>
+                     <datalist id="products">
+                      <%products.forEach(dt=>{%>
+                        <option value="<%=dt.producto%>"><%=dt.producto%></option>
+                        <%})%>
+                     </datalist>
+                   </div>
+                 </div>
+                 <div class="col-md-6">
+                   <div class="form-floating">
+                     <input type="text" class="form-control" id="amount" placeholder="Password">
+                     <label for="floatingPassword">Cantidad</label>
+                    </div>
+                </div>
+                 <div class="text-center">
+                   <button type="reset" class="btn btn-secondary">Limpiar</button>
+                   <button type="submit" class="btn btn-primary">Registrar credito</button>
+                  </div>
+                </form><!-- End floating Labels Form -->
+              </div>
+            </div>
+
+            <div class="pagetitle">
+              <h1>Productos agregados</h1>
+            </div><!-- End Page Title -->
+          
+            <section class="section">
+              <div class="row">
+                <div class="col-lg-12">
+          
+                  <div class="card">
+                    <div class="card-body">
+          
+                      <!-- Default Table -->
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th scope="col">Producto</th>
+                            <th scope="col">Cantidad</th>
+                            <th scope="col">Monto</th>
+                            <th scope="col">Acciones</th>
+                          </tr>
+                        </thead>
+                      <tbody id="tbody-products">
+
+                      </tbody>
+                      </table>
+                      <!-- End Default Table Example -->
+                    </div>
+                  </div>
+              
+              </div>
+            </section>
+            <script src="/assets/js/credits.js"></script>
+            <%} else if (form === "registro de producto") {%>
+              <div class="card">
+                  <div class="card-body">
+                      <h5 class="card-title">Registro de producto</h5>
+                      <form class="row g-3" action="/newproduct" enctype="application/json" method="POST">
+                          <div class="col-md-12">
+                              <div class="form-floating">
+                                  <input type="text" name="nombre" class="form-control" id="producto" placeholder="Nombre del producto">
+                   <label for="floatingName">producto</label>
+                 </div>
+               </div>
+               <div class="col-md-6">
+                 <div class="form-floating">
+                   <input name="descripcion" type="text" class="form-control" id="floatingEmail" placeholder="Descripcion">
+                   <label for="floatingEmail">Descripcion</label>
+                 </div>
+               </div>
+               <div class="col-md-6">
+                 <div class="form-floating">
+                   <input name="precio" type="number" class="form-control" id="floatingPassword" placeholder="Precio">
+                   <label for="floatingPassword">Precio</label>
+                  </div>
+              </div>
+               <div class="text-center">
+                 <button type="reset" class="btn btn-secondary">Limpiar</button>
+                 <button type="submit" class="btn btn-primary">Registrar</button>
+               </div>
+             </form><!-- End floating Labels Form -->
+            </div>
+          </div>
+
+          <%}%>
+            <!-- Floating Labels Form -->
+    </div>
+</section>
+

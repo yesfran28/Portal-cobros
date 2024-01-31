@@ -1,0 +1,149 @@
+<section style="margin-top: 4em;" class="section">
+  <div class="row">
+    <div class="col-lg-12">
+
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title"><%=table%> </h5>
+
+          <!-- Table with stripped rows -->
+          <table class="table datatable">
+            <%if (table === "Clientes"){%> 
+            <thead>
+              <tr>
+                <th>
+                  <b>C</b>liente
+                </th>
+                <th>Turno</th>
+                <th>Accion</th>
+              </tr>
+            </thead>
+            <tbody>
+              <%data.forEach(dt=>{%>
+                <tr>
+                 <td><%=dt.cliente%></td>
+                 <td><%=dt.turno%></td>
+                 <td>
+                   <i data-type="ign-<%=dt.id%>" id="icon-ign" title="ignorar" class="bi icon-acc bi-eye-slash"></i>
+                   <i data-type="aprb-<%=dt.id%>" id="icon-aprb" title="aprobar" class="bi icon-acc bi-check-circle"></i>
+                   <i data-type="elm-<%=dt.id%>" id="icon-elm" title="eliminar" class="bi icon-acc bi-trash3"></i>
+                 </td>
+                </tr>
+               <%})%>
+            </tbody>
+            <%} else if (table === "Suscriptores"){%> 
+              <thead>
+                <tr>
+                  <th>
+                    <b>C</b>liente
+                  </th>
+                  <th>Celular</th>
+                  <th>Push</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody class="thbody-solicitud">
+                <%data.forEach(dt=>{%>
+                   <tr>
+                    <td><%=dt.cliente%></td>
+                    <%if(dt.celular){%>
+                      <td><%=dt.celular%></td>
+                    <%} else {%>
+                      <td><%="No"%></td>
+                    <%}%>
+                    <td><%=dt.push%></td>
+                    <td>
+                      <i data-type="ign-<%=dt.id%>" id="icon-ign" title="ignorar" class="bi icon-acc bi-eye-slash"></i>
+                      <i data-type="aprb-<%=dt.id%>" id="icon-aprb" title="aprobar" class="bi icon-acc bi-check-circle"></i>
+                      <i data-type="elm-<%=dt.id%>" id="icon-elm" title="eliminar" class="bi icon-acc bi-trash3"></i>
+                    </td>
+                   </tr>
+                  <%})%>
+              </tbody>
+              <%} else if (table === "Creditos"){%> 
+                <thead>
+                  <tr>
+                    <th>
+                      <b>C</b>liente
+                    </th>
+                    <th>Monto</th>
+                    <th>Estado</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <%data.forEach(dt=>{%>
+                    <tr>
+                     <td><%=dt.cliente%></td>
+                     <td>C$ <%=dt.monto.toFixed(2)%></td>
+                     <td><%=dt.estado%></td>
+                    </tr>
+                   <%})%>
+                </tbody>
+                <%} else if (table === "Historial de creditos"){%> 
+                  <thead>
+                    <tr>
+                      <th>
+                        <b>C</b>liente
+                      </th>
+                      <th>Producto</th>
+                      <th>Cantidad</th>
+                      <th>Monto</th>
+                      <th>Fecha</th>
+                      <th>Hora</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <%data.forEach(dt=>{%>
+                      <tr>
+                       <td><%=dt.cliente%></td>
+                       <td><%=dt.producto%></td>
+                       <td><%=dt.cantidad%></td>
+                       <td><%=dt.monto%></td>
+                       <td><%=dt.fecha%></td>
+                       <td><%=dt.hora%></td>
+                      </tr>
+                     <%})%>
+                  </tbody>
+                  <%} else if (table === "Productos"){%> 
+                    <thead>
+                      <tr>
+                        <th>Producto</th>
+                        <th>Precio</th>
+                    </div>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <%data.forEach(dt=>{%>
+                        <tr>
+                         <td><%=dt.producto%></td>
+                         <td><%=dt.precio%></td>
+                         <td><%=dt.estado%></td>
+                         <td>eliminar</td>
+                        </tr>
+                       <%})%>
+                    </tbody>
+                    <%} else if (table === "Solicitudes push"){%> 
+                      <thead>
+                        <tr>
+                          <th>Fecha</th>
+                          <th>Hora</th>
+                          <th>Acciones</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        
+                      </tbody>
+                      <%}%> 
+                       
+          </table>
+          <!-- End Table with stripped rows -->
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <script src="/assets/js/tables.js"></script>
+</section>
