@@ -46,5 +46,5 @@ app.use((req, res, next)=>{
     next()
 })
  //Run application
-const port = process.env.PORT;
+const port = 5000 || process.env.PORT;
 app.listen(port, ()=> console.log("Server in port:", port));
